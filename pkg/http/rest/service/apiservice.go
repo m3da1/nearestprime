@@ -10,9 +10,10 @@ import (
 var RestService model.NearestPrimeModel
 
 // Initializing primes
-//
+// This is where the prime numbers pre-computed at application start up
 func Init() {
 	log.Println("Initializing primes")
+	// The argument of Primes function indicate the highest prime
 	RestService.Primes = prime.Primes(999999999)
 	log.Println("Done prime initialization")
 }
@@ -24,9 +25,11 @@ func GetNearestPrime(num int) uint64 {
 
 //performBinarySearch
 func performBinarySearch(min, max, num int) uint64 {
+	// for numbers less than 3 we return 0
 	if num <= 2 {
 		return 0
 	}
+	// logic for the binary search for the closest number
 	if min <= max {
 		mid := (min + max) / 2
 		if mid == 0 || mid == len(RestService.Primes)-1 {

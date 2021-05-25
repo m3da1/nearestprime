@@ -1,4 +1,5 @@
 #!/bin/bash
 
 export GIN_MODE=release
-go run cmd/appserver/main.go
+go build -o nearestprime cmd/appserver/main.go
+./nearestprime

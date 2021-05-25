@@ -12,21 +12,15 @@ import (
 func main() {
 	// Setting up api service
 	service.Init()
-
 	// Setting up gin route with default middleware
 	r := gin.Default()
-
 	// Setting mode to production
 	gin.DisableConsoleColor()
 	gin.SetMode(gin.ReleaseMode)
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
-
 	// Registering routes
 	r.GET("/nearestprime/:num", controller.NearestPrime)
-
-	log.Println("Prime length is", len(service.RestService.Primes))
-
 	// Running Server
 	log.Println("Starting application")
 	r.Run()
