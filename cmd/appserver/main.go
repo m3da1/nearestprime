@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"com.m3d.dev/nearestprimes/pkg/http/rest/controller"
 	"com.m3d.dev/nearestprimes/pkg/http/rest/service"
+	"com.m3d.dev/nearestprimes/pkg/http/rest/util"
 	"github.com/gin-gonic/gin"
 
 	_ "com.m3d.dev/nearestprimes/docs/nearestprimes"
@@ -24,13 +26,18 @@ import (
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host localhost:8080
 // @BasePath /
 // @schemes http
 // Application Entry Point
 func main() {
+	// Load configuration
+	config, err := util.LoadConfig(".")
+	if err != nil {
+		log.Fatal("Unable to load configurations")
+	}
+	log.Printf("%+v\n", config)
 	// Setting up api service
-	service.Init()
+	service.InitializePrimes(config.LargestPrime)
 	// Setting up gin route with default middleware
 	r := gin.Default()
 	// Setting mode to production
@@ -42,9 +49,10 @@ func main() {
 	r.GET("/nearestprime/:num", controller.NearestPrime)
 	r.GET("/nearestprime", controller.HealthCheck)
 	// Swagger UI
-	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
+	url := fmt.Sprintf("http://%s/swagger/doc.json", config.ServerAddress)
+	swaggerURL := ginSwagger.URL(url)
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, swaggerURL))
 	// Running Server
-	log.Println("Starting application")
-	r.Run()
+	log.Printf("Starting application @ %v\n", config.ServerAddress)
+	r.Run(config.ServerAddress)
 }

@@ -9,12 +9,12 @@ import (
 
 var RestService model.NearestPrimeModel
 
-// Initializing primes
+// InitializePrimes godoc
 // This is where the prime numbers pre-computed at application start up
-func Init() {
+func InitializePrimes(num int) {
 	log.Println("Initializing primes")
 	// The argument of Primes function indicate the highest prime
-	RestService.Primes = prime.Primes(999999999)
+	RestService.Primes = prime.Primes(uint64(num))
 	log.Println("Done prime initialization")
 }
 
