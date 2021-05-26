@@ -13,12 +13,13 @@ import (
 //
 // NearestPrime godoc
 // @Summary Returns the highest prime number lower than the provided number.
-// @Description get the highest prime number lower than the provided number.
+// @Description Gets the highest prime number lower than the provided number.
 // @Tags root
 // @Accept */*
+// @Param num path int true "Number"
 // @Produce text/plain
 // @Success 200
-// @Router /nearestprime/:num [get]
+// @Router /nearestprime/{num} [get]
 func NearestPrime(c *gin.Context) {
 	// Obtain string representation of the number from the path variable
 	req := c.Param("num")
@@ -38,7 +39,7 @@ func NearestPrime(c *gin.Context) {
 
 // HealthCheck godoc
 // @Summary Show the status of service.
-// @Description get the status of service.
+// @Description Gets the status of service.
 // @Tags root
 // @Accept */*
 // @Produce json

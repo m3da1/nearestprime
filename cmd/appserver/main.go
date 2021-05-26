@@ -6,6 +6,10 @@ import (
 	"com.m3d.dev/nearestprimes/pkg/http/rest/controller"
 	"com.m3d.dev/nearestprimes/pkg/http/rest/service"
 	"github.com/gin-gonic/gin"
+
+	_ "com.m3d.dev/nearestprimes/docs/nearestprimes"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // @title Nearest Prime API
@@ -21,7 +25,7 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
 // @host localhost:8080
-// @BasePath /nearestprime
+// @BasePath /
 // @schemes http
 // Application Entry Point
 func main() {
@@ -37,6 +41,9 @@ func main() {
 	// Registering routes
 	r.GET("/nearestprime/:num", controller.NearestPrime)
 	r.GET("/nearestprime", controller.HealthCheck)
+	// Swagger UI
+	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 	// Running Server
 	log.Println("Starting application")
 	r.Run()
