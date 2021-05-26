@@ -14,7 +14,7 @@ import (
 // NearestPrime godoc
 // @Summary Returns the highest prime number lower than the provided number.
 // @Description Gets the highest prime number lower than the provided number.
-// @Tags root
+// @Tags NearestPrime
 // @Accept */*
 // @Param num path int true "Number"
 // @Produce text/plain
@@ -40,7 +40,7 @@ func NearestPrime(c *gin.Context) {
 // HealthCheck godoc
 // @Summary Show the status of service.
 // @Description Gets the status of service.
-// @Tags root
+// @Tags NearestPrime
 // @Accept */*
 // @Produce json
 // @Success 200 {object} map[string]interface{}

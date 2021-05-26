@@ -43,7 +43,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "root"
+                    "NearestPrime"
                 ],
                 "summary": "Show the status of service.",
                 "responses": {
@@ -67,7 +67,7 @@ var doc = `{
                     "text/plain"
                 ],
                 "tags": [
-                    "root"
+                    "NearestPrime"
                 ],
                 "summary": "Returns the highest prime number lower than the provided number.",
                 "parameters": [
