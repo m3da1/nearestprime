@@ -37,7 +37,9 @@ func main() {
 	}
 	log.Printf("%+v\n", config)
 	// Setting up api service
-	service.InitializePrimes(config.LargestPrime)
+	if err := service.InitializePrimes(config.LargestPrime); err != nil {
+		log.Fatal(err)
+	}
 	// Setting up gin route with default middleware
 	r := gin.Default()
 	// Setting mode to production
