@@ -27,3 +27,12 @@ func NearestPrime(c *gin.Context) {
 	// Response to return
 	c.String(http.StatusOK, "%v", prime)
 }
+
+// GET /nearest
+// Return OK which indicates that the service is running
+func HealthCheck(c *gin.Context) {
+	response := map[string]interface{}{
+		"status": "OK",
+	}
+	c.JSON(http.StatusOK, response)
+}

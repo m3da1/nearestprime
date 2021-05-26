@@ -21,6 +21,7 @@ func main() {
 	r.Use(gin.Recovery())
 	// Registering routes
 	r.GET("/nearestprime/:num", controller.NearestPrime)
+	r.GET("/nearestprime", controller.HealthCheck)
 	// Running Server
 	log.Println("Starting application")
 	r.Run()
