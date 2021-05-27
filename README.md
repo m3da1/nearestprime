@@ -17,7 +17,7 @@
 The project is simply a web application which returns the nearest prime number closest to a number
 provided by a user.
 
-For instances, when a user supplies 100 to the services, it should return a value of 97.
+For instances, when a user supplies 100 to the service, it should return a value of 97.
 
 This is purely written in golang
 
